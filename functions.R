@@ -18,10 +18,10 @@ get_wikipedia_link <- function(keyword) {
   }
 }
 
-auto_link_wikipedia <- function(text) {
+auto_link_wikipedia <- function(text, system_prompt = paste(collapse = "\n", readLines("prompt.md", warn = FALSE))) {
   chat <- ellmer::chat_openai(
     model = "gpt-4o-mini",
-    system_prompt = paste(collapse = "\n", readLines("prompt.md", warn = FALSE))
+    system_prompt = system_prompt
   )
   chat$register_tool(
     ellmer::tool(
